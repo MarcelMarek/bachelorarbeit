@@ -1,36 +1,53 @@
-\section{Example}
+\chapter{Bilder} \label{sec:pictures}
+
+\section{Einzeln}
 
 \begin{figure}[H]
     \begin{center} 
-        \includegraphics[width=0.8\textwidth]{example}
-        \caption{Example Image}
-        \label{fig:example}
+        \includegraphics[width=0.5\linewidth]{example}
+        \caption{Beispielbild 1}
+        \label{fig:example-1}
     \end{center}
 \end{figure}
 
-\cite[vgl. dazu][]{example-book}
+\section{Doppelt}
 
-This Picture (\ref{fig:example}) is awesome
+\begin{figure}[H]
+    \begin{center} 
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\textwidth]{example}
+        \caption{Beispielbild 2}
+        \label{fig:example-2}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\linewidth}
+        \includegraphics[width=\textwidth]{example}
+        \caption{Beispielbild 3}
+        \label{fig:example-3}
+    \end{subfigure}
+    \caption{Beispielbilder}
+    \label{fig:examples}
+    \end{center}
+\end{figure}
 
-\cite[vgl. dazu][]{example-online}
+Die \refa{fig:example-2} ist super!
 
-\newpage
+Schau dir mal \refk{sec:pictures} an!
 
-\section{Requirements}
+\chapter{Bibliography}
 
-\srequirement{should}
-lala und lulu
+\cite[vgl.][]{example-book}
 
-\corequirement{could}
-lala und lulu
+\cite[][ein Bild]{example-online}
 
-\morequirement{could}
-lala und lulu
+Vielleicht reicht auch Google\wwwlink{google.de}...
 
-\wrequirement{could}
-lala und lulu
+\chapter{Abkürzungen}
 
-\section{Programming}
+\ac{html} ist super. \acf{js} wird ausgeschrieben \engl{written out}. \acs{js} wird nur abgekürzt.
+
+\chapter{Programmierung}
+
+\section{Lstlisting}
 
 \begin{lstlisting}[language=Bash]
 #!/bin/bash
@@ -38,11 +55,7 @@ lala und lulu
 echo "Hello World"
 \end{lstlisting}
 
-\begin{lstlisting}[language=Python]
-# same in python
-
-print("Hello World")
-\end{lstlisting}
+\section{Verbatim}
 
 \begin{verbatim}
 $ sudo apt-get update

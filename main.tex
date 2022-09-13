@@ -1,58 +1,61 @@
 \documentclass[
-   a4paper,
-   oneside,
+   paper=a4,
+   twoside=false,
    parskip=half,
    listof=entryprefix,
    listof=totoc,
    index=totoc,
-   bibliography=totoc
-]{scrartcl}
+   bibliography=totoc,
+   headsepline,
+]{scrbook}
 
 \usepackage{silence}
 \WarningFilter{biblatex}{File 'ngerman-iso.lbx'}
 \WarningFilter{biblatex}{'\mainlang'}
+\WarningFilter{biblatex}{Bibliography string 'online' untranslated}
+\WarningFilter{hyperref}{Token not allowed in a PDF string}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fonts Fonts Fonts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
 
-\usepackage{pdfpages,graphicx,subcaption,lastpage}
+\usepackage{scrhack}
+\usepackage{pdfpages,graphicx,subcaption,lastpage,xspace}
 \graphicspath{ {./images} }
-
-\usepackage{geometry}
-\geometry{a4paper, top=2.5cm, left=2.5cm, right=2.5cm, bottom=2.5cm}
-\usepackage{float,listings,xcolor,csquotes,microtype,scrlayer-scrpage,etoolbox}
+\usepackage{float,xcolor,csquotes,microtype,etoolbox}
+\MakeOuterQuote{"}
+\usepackage[automark,markcase=ignoreuppercase,autooneside=false]{scrlayer-scrpage}
 \usepackage[official]{eurosym}
+\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,filecolor=black,urlcolor=black]{hyperref}
 
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-\definecolor{weborange}{rgb}{1,0.65,0}
-
-\lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    emph={int,char,double,float,unsigned,void,bool},
-    emphstyle={\color{weborange}},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,
-    breaklines=true,
-    captionpos=b,
-    keepspaces=true,
-    numbers=left,
-    numbersep=5pt,
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    tabsize=2,
-    firstnumber=1,
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Listings Paket
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings,caption}
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\lstset{
+   basicstyle =\ttfamily\color{black}\small,
+   keywordstyle =,
+   commentstyle =\color{teal},
+   stringstyle =\itshape,
+   tabsize=2,
+   breaklines=true,
+   captionpos=b,
+   breakatwhitespace,
+   backgroundcolor={\color{codebg}},
+   basewidth=0.5em,
 }
-\lstset{style=mystyle}
+\lstloadlanguages{
+   bash,
+}
+\usepackage{pmboxdraw}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setuptoc{toc}{totoc}
 
 \usepackage[
@@ -64,15 +67,8 @@
    mincitenames=1,
    maxcitenames=3
 ]{biblatex}
-\addbibresource{bib/online.bib}
-\addbibresource{bib/book.bib}
-
-\DefineBibliographyStrings{ngerman}{
-   andothers = {{et\,al\adddot}},
-   online = {{online}},
-   urlseen = {{Zugriff am:}},
-   urlfrom = {{Verfügbar unter:}},
-}
+\addbibresource{./bib/online.bib}
+\addbibresource{./bib/book.bib}
 
 \DeclareNameAlias{default}{family-given/given-family}
 
@@ -87,29 +83,76 @@
 }
 \AfterTOCHead[lof]{\appto\autodot{:}}
 
-\definecolor{must-have-brown}{RGB}{51, 22, 18}
-\definecolor{should-have-red}{RGB}{229, 24, 31}
-\definecolor{could-have-orange}{RGB}{246, 121, 28}
-\definecolor{wont-have-blue}{RGB}{32, 169, 215}
-\newcommand{\morequirement}[1]{\paragraph{#1}\hfill\textbf{\textcolor{must-have-brown}{must-have}}\\}
-\newcommand{\srequirement}[1]{\paragraph{#1}\hfill\textbf{\textcolor{should-have-red}{should-have}}\\}
-\newcommand{\corequirement}[1]{\paragraph{#1}\hfill\textbf{\textcolor{could-have-orange}{could-have}}\\}
-\newcommand{\wrequirement}[1]{\paragraph{#1}\hfill\textbf{\textcolor{wont-have-blue}{won't-have}}\\}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fussnoten
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\deffootnote{1.5em}{1em}{\makebox[1.5em][l]{\thefootnotemark}}
+\addtolength{\skip\footins}{\baselineskip}
+\setlength{\dimen\footins}{10\baselineskip}
+\interfootnotelinepenalty=10000  % Verhindert das Fortsetzen von
+                                 % Fussnoten auf der gegen�berligenden Seite
 
-\ihead{Example Header}
-\chead{}
-\ohead{Surname Lastname}
-\ofoot{Seite~\thepage{}/\pageref{LastPage}}
-\cfoot{}
-\title{Example Title}
-\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,filecolor=black,urlcolor=black]{hyperref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\workDatum}{\today\xspace}
+\newcommand{\workDateTime}{\today{} - \thistime\ Uhr}
+\newcommand{\workFirma}{<Firma>\xspace}
+\newcommand{\workTitel}{<Titel>}
+\newcommand{\workNameStudent}{<Student>\xspace}
+\newcommand{\workTyp}{<Arbeit>\xspace}
 
+\newcommand{\www}[1]{\href{http://#1}{#1}}
+\newcommand{\wwwhttp}[1]{\href{#1}{#1}}
+\newcommand{\wwwlink}[1]{\footnote{\www{#1}}}
+
+\newcommand{\zB}{\mbox{z.\,B.}\xspace}
+\newcommand{\ua}{\mbox{u.\,a.}\xspace}
+\newcommand{\dah}{\mbox{d.\,h.}\xspace}
+\newcommand{\uAe}{\mbox{u.\,a.}\xspace}
+
+\newcommand{\refp}[1]{Seite~\pageref{#1}\xspace}
+\newcommand{\refk}[1]{Kapitel~\ref{#1}\xspace}
+\newcommand{\refa}[1]{Abbildung~\ref{#1}\xspace}
+\newcommand{\reft}[1]{Tabelle~\ref{#1}\xspace}
+\newcommand{\reflst}[1]{Listing~\ref{#1}\xspace}
+
+\newcommand{\engl}[1]{(engl: \textit{#1})\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kopf und Fusszeilen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{scrtime}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead[]{\leftmark}
+\ohead[]{\rightmark}
+\counterwithout{footnote}{chapter}
+\ifoot[\workDateTime]{\workDateTime}
+\ofoot[\pagemark]{\pagemark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acronyms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{acro}
+
+\DeclareAcronym{html}{short=HTML,long=HyperText Markup Language}
+\DeclareAcronym{js}{short=JS,long=JavaScript}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Dokument
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
     \include{titlepage/titlepage}
+    \include{vorspiel/vorspiel}
+
     \tableofcontents
     \newpage
     \listoffigures
+    \printacronyms
+    \addcontentsline{toc}{chapter}{Abkürzungen}
+
     \include{example/example}
 
     \printbibliography[title=Literaturverzeichnis]
