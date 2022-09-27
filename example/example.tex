@@ -49,10 +49,13 @@ Vielleicht reicht auch Google\wwwlink{google.de}...
 
 \section{Lstlisting}
 
-\begin{lstlisting}[language=Bash]
-#!/bin/bash
-
-echo "Hello World"
+\begin{lstlisting} [caption=Zugriff auf Klassen über eine Nachschlagetabelle, label=code:lookup-table]
+    const bgColor = {
+        blue: "bg-blue-600",
+        red: "bg-red-600",
+        green: "bg-green-600",
+    };
+    bgColor[props.color]
 \end{lstlisting}
 
 \section{Verbatim}

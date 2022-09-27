@@ -34,8 +34,26 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Listings Paket
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{listings,caption}
+\usepackage{listings,caption,pmboxdraw}
 \definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with, const},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  sensitive=true,
+}
 \lstset{
    basicstyle =\ttfamily\color{black}\small,
    keywordstyle =,
@@ -47,11 +65,11 @@
    breakatwhitespace,
    backgroundcolor={\color{codebg}},
    basewidth=0.5em,
+   numbers=left,
+   numberstyle=\tiny,
+   numbersep=-8pt,
+   language=JavaScript,
 }
-\lstloadlanguages{
-   bash,
-}
-\usepackage{pmboxdraw}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography
@@ -62,26 +80,14 @@
    backend=biber,
    urldate=long,
    style=iso-authoryear,
-   natbib=true,
    useauthor=true,
    mincitenames=1,
-   maxcitenames=3
+   maxcitenames=3,
+   maxbibnames=99,
 ]{biblatex}
 \addbibresource{./bib/online.bib}
 \addbibresource{./bib/book.bib}
-
 \DeclareNameAlias{default}{family-given/given-family}
-
-\renewcommand*{\finalnamedelim}{\addspace{}und\space}
-\AtEveryCite{
-   \renewcommand*{\multinamedelim}{,\space}
-   \renewcommand*{\nameyeardelim}{\space}
-}
-
-\AtBeginBibliography{
-   \renewcommand*{\multinamedelim}{,\space}
-}
-\AfterTOCHead[lof]{\appto\autodot{:}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fussnoten
@@ -133,27 +139,44 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Acronyms
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{acro}
+% https://ctan.math.washington.edu/tex-archive/macros/latex/contrib/acro/acro-manual.pdf
+\usepackage{acro,supertabular,array}
+
+\acsetup{
+   make-links=true,
+   list/template=supertabular,
+   list/heading=chapter*,
+   list/sort=true,
+   list/display=used,
+   list/name=Abkürzungsverzeichnis,
+}
 
 \DeclareAcronym{html}{short=HTML,long=HyperText Markup Language}
 \DeclareAcronym{js}{short=JS,long=JavaScript}
+
+\usepackage{todonotes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dokument
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-    \include{titlepage/titlepage}
-    \include{vorspiel/vorspiel}
+   \include{titlepage/titlepage}
+   \include{vorspiel/vorspiel}
 
-    \tableofcontents
-    \newpage
-    \listoffigures
-    \printacronyms
-    \addcontentsline{toc}{chapter}{Abkürzungen}
+   \tableofcontents
+   \newpage
+   \listoffigures
+   \renewcommand\lstlistingname{Codefragment}
+   \renewcommand\lstlistlistingname{Codeverzeichnis}
+   \lstlistoflistings
+   \printacronyms[heading=addchap]
 
-    \include{example/example}
 
-    \printbibliography[title=Literaturverzeichnis]
+   \include{example/example}
+
+   \printbibheading[title=Literaturverzeichnis]
+   \printbibliography[type=book,heading=subbibliography,title=Buch-Quellen]
+   \printbibliography[type=online,heading=subbibliography,title=Online-Quellen]
 
 \end{document}
