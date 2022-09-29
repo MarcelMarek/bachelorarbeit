@@ -157,6 +157,28 @@
 \usepackage{todonotes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Glossar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[nonumberlist]{glossaries}
+\usepackage{glossary-super}
+\setglossarystyle{super}
+\makenoidxglossaries
+\renewcommand*{\glstextformat}{\textbf}
+\renewcommand*{\glsnamefont}{\textbf}
+
+\newglossaryentry{glos:latex}
+{
+   name=Latex,
+   description={Is a markup language specially suited
+   for scientific documents}
+}
+\newglossaryentry{glos:swagger}
+{
+   name=Swagger,
+   description={Is a suite of tools for API developers from SmartBear Software and a former specification upon which the OpenAPI Specification is based}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dokument
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -171,7 +193,7 @@
    \renewcommand\lstlistlistingname{Codeverzeichnis}
    \lstlistoflistings
    \printacronyms[heading=addchap]
-
+   \printnoidxglossary
 
    \include{example/example}
 
