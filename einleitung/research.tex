@@ -1,0 +1,59 @@
+\chapter{Wissenschaftliche Vertiefung} \label{sec:research}
+\section{Prototypisierung mit Python}
+\subsection*{Pillow}
+Pillow ist der Nachfolger der Python Imaging Library. Es stellt Funktionen zur Archivierung, Anzeige und Bearbeitung von Bilddateien bereit. 
+Mit Pillow können Dateien in ein spezifisches Bildformat konvertiert werden. Dies kann laut Dokumentation (\cite[][]{pillow-documentary}) mit der save-Methode der Image Klasse erreicht werden.
+
+\begin{lstlisting} [caption=Konvertierung einer Datei in ein Bildformat durch Pillow, label=code:pillow-image-converter]
+import os, sys
+from PIL import Image
+
+for infile in sys.argv[1:]:
+    f, e = os.path.splitext(infile)
+    outfile = f + ".jpg"
+    if infile != outfile:
+        try:
+            with Image.open(infile) as im:
+                im.save(outfile)
+        except OSError:
+            print("cannot convert", infile)
+\end{lstlisting}
+
+Es sind darüber hinaus weitere Bildmanipulationen möglich. Darunter fallen das Ausschneiden eines Bildbereiches, das Einfügen des Ausschnitts in ein anderes Bild oder das Drehen des Bildes. Zur Verbesserung der Bildqualität ist ein ImageEnhance Modul enthalten. Mit diesem kann unter anderem der Kontrast eingestellt werden. Für sequentielle Bildformate, wie FLI, TIFF oder GIF, gibt es eine Funktion die einzelnen Frames einzuladen. Zuletzt verfügt die Pillow Bibliothek über eine PostScript-Unterstützung zum Ausdrucken der Bilddateien. 
+Videoformate werden von Pillow nicht unterstützt. Damit sind lediglich die Grundlagen zur Bildmanipulation gegeben.
+
+\subsection*{PyLab}
+Interactive annotation. Mit PyLab kann eine Markierung im Bild oder eine Notiz an den Trainingsdaten gesetzt werden.
+
+\begin{lstlisting} [caption=PyLab: Kommentieren einer Datei, label=code:pylab-Interactive-annotation]
+from PIL import Image
+from pylab import *
+im = array(Image.open('empire.jpg'))
+imshow(im)
+print 'Please click 3 points'
+x = ginput(3)
+print 'you clicked:',x
+show()
+\end{lstlisting}
+
+\subsection*{labelImg}
+LabelImg is a graphical image annotation tool and label object bounding boxes in images (\cite[][]{labelImg-link}).
+
+\subsection*{Computer Vision Annotation Tool }
+CVAT is an interactive video and image annotation tool for computer vision. It is used by tens of thousands of users and companies around the world. Our mission is to help developers, companies, and organizations around the world to solve real problems using the Data-centric AI approach. (\cite[][]{CVAT-link}).
+
+\subsection*{labelme}
+Image Polygonal Annotation with Python (\cite[][]{labelme-link}).
+Labelme is a graphical image annotation tool inspired by http://labelme.csail.mit.edu.
+It is written in Python and uses Qt for its graphical interface.
+
+\subsection*{VoTT}
+An open source annotation and labeling tool for image and video assets.
+VoTT is a React + Redux Web application, written in TypeScript. This project was bootstrapped with Create React App. (\cite[][]{VoTT-link})
+\textbf{VoTT is no longer being maintained!}
+
+\subsection*{imglab}
+A web based tool to label images for objects that can be used to train dlib or other object detectors. (\cite[][]{imglab-link})
+
+\subsection*{PixelAnnotationTool}
+Software that allows you to manually and quickly annotate images in directories. The method is pseudo manual because it uses the algorithm watershed marked of OpenCV. The general idea is to manually provide the marker with brushes and then to launch the algorithm. If at first pass the segmentation needs to be corrected, the user can refine the markers by drawing new ones on the erroneous areas (\cite[][]{PixelAnnotationTool-link}).
