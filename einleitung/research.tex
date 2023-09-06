@@ -57,3 +57,50 @@ A web based tool to label images for objects that can be used to train dlib or o
 
 \subsection*{PixelAnnotationTool}
 Software that allows you to manually and quickly annotate images in directories. The method is pseudo manual because it uses the algorithm watershed marked of OpenCV. The general idea is to manually provide the marker with brushes and then to launch the algorithm. If at first pass the segmentation needs to be corrected, the user can refine the markers by drawing new ones on the erroneous areas (\cite[][]{PixelAnnotationTool-link}).
+
+
+Bilder können mit Hilfe von NumPy als Array repräsentiert werden. NumPy bietet vielfältige Möglichkeiten Daten zu speichern. Mittels einigen Konvertiermethoden lässt sich der Input und Output besser Verwalten als in andere Bibliotheken. So können im Vorfeld die Ausnahmen konfiguriert werden. Anschließend kann die Konvertierung automatisiert durchgeführt werden.
+Darüber hinaus gibt es Transformationsmöglichkeiten für Vektoren.
+
+
+- datasets for labeling CV
+- timeserious daten labelin
+nest js
+Umsetzung eines Softwarestacks
+(analyse)
+zeitplan -> kick off mit koch
+
+\subsection*{Zeitplan / Exposé}
+\subsubsection*{Orientierungs- und Planungsphase}
+\begin{itemize}
+    \item Thema finden (Auswahl eines geeigneten Softwarestacks für die Entwicklung einer Labeling Plattform) \textbf{DONE}
+    \item Fragestellung und vorläufige Gliederung \textbf{Bis 8.09. / nach Besprechungstermin Koch}
+    \item Passende Literatur recherchieren und sichten \textbf{Bis 15.09. / nach Besprechungstermin Koch}
+\end{itemize}
+
+\subsubsection*{Recherche- und Materialbeschaffungsphase}
+\begin{itemize}
+    \item Intensive Literatursuche und -analyse \textbf{Bis 15.10.}
+    \item Forschungsdesign auswählen und vertiefen \textbf{Bis 22.10.}
+    \item Daten sammeln \textbf{Bis 30.10.}
+    \item Datenanalyse und -auswertung \textbf{Bis 10.10.} 
+\end{itemize}
+
+
+\subsubsection*{Schreibphase}
+Einleitung, Literaturübersicht, Fazit \textbf{Bis 10.11.}
+
+\subsubsection*{Abschlussphase}
+Korrektur, Layout \textbf{Bis 24.11.}
+
+
+\section{Prototypisierung mit JS}
+nestjs: Alternative zu Express. Nest bietet eine sofort einsatzbereite Anwendungsarchitektur, die es Entwicklern und Teams ermöglicht, hochgradig testbare, skalierbare, lose gekoppelte und leicht wartbare Anwendungen zu erstellen. Die Architektur ist stark von Angular inspiriert
+
+\subsection*{SciPy}
+Image Derivate: Dabei werden die x- und y-Ableitungen und die Gradientengröße mit Hilfe des Sobel-Filters berechnet. 
+In SciPy.IO ist es möglich matLab Dateien zu laden.
+
+
+\subsection*{Morphologie}
+mehrere datensätze 9088
