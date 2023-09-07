@@ -128,11 +128,11 @@
 \usepackage{scrtime}
 \pagestyle{scrheadings}
 \clearpairofpagestyles
-\ihead[]{\leftmark}
-\ohead[]{\rightmark}
+\ihead[]{\leftmark \\ \rightmark} % Add \\ here to separate the left and right marks
 \counterwithout{footnote}{chapter}
 \ifoot[\workDateTime]{\workDateTime}
 \ofoot[\pagemark]{\pagemark}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Acronyms
