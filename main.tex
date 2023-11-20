@@ -187,26 +187,29 @@
 
    \tableofcontents
    \newpage
-   \include{einleitung/motivation}
-   \include{einleitung/zielsetzung}
-   \include{einleitung/aufbau}
+   \include{introduction/background-and-motivation}
+   \include{introduction/objective-of-the-work}
+   \include{introduction/aufbau}
 
    \newpage
-   \include{grundlagen/labeling-plattformen-definition}
-   \include{grundlagen/softwarestack-begriffsdefinition}
-   \include{grundlagen/labeling-plattform-anforderungen}
-   \include{grundlagen/labeling-platform-ueberblick-softwarestacks}
+   \include{sec:basics}
+   \include{sec:basics-softwarestack-definition}
+   \include{sec:basics-requirements}
+   \include{sec:basics-overview-python}
+   \include{sec:basics-overview-js}
 
    \newpage
-   \include{evaluierungskriterien/features}
-   \include{evaluierungskriterien/performance}
-   \include{evaluierungskriterien/usability}
-   \include{evaluierungskriterien/sicherheit}
-   \include{evaluierungskriterien/anpassbarkeit}
-   \include{evaluierungskriterien/unterstuetzung}
+   \include{incomplete-data/incomplete-data}
+   \include{incomplete-data/reason}
+   \include{incomplete-data/challenges}
+   \include{incomplete-data/recognition}
+   \include{incomplete-data/data-gaps}
+   \include{incomplete-data/solution}
+   \include{incomplete-data/evaluierung}
 
    \newpage
    \include{vergleich/stack-a}
+   \include{these/definition}
 
    \newpage
    \include{fallstudie/anforderungsanalyse}
@@ -218,7 +221,7 @@
    \newpage
    \include{bewertung/bewertung}
    \include{bewertung/vergleich-anforderungen}
-    \include{bewertung/erkenntnisse}
+   \include{bewertung/erkenntnisse}
    \include{bewertung/fazit}
 
    \listoffigures
@@ -227,14 +230,12 @@
    \lstlistoflistings
    \printacronyms[heading=addchap]
    \printnoidxglossary
-
    \include{example/example}
-   \include{einleitung/definition}
-   \include{einleitung/research}
-
 
    \printbibheading[title=Literaturverzeichnis]
    \printbibliography[type=book,heading=subbibliography,title=Buch-Quellen]
    \printbibliography[type=online,heading=subbibliography,title=Online-Quellen]
 
+
+   
 \end{document}

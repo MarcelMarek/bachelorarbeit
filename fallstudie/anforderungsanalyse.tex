@@ -1,2 +1,27 @@
-\chapter{Fallstudie: Entwicklung einer Labeling Plattform mit ausgewähltem Softwarestack}\label{sec:anforderungsanalyse}
+\chapter{Fallstudie: Entwicklung einer Labeling Plattform}\label{sec:anforderungsanalyse}
 \section{Anforderungsanalyse für die zu entwickelnde Plattform}
+
+Wie weit / abgeschlossen ist die Technologie
+
+Bilder müssen in der gleichen Größe hinterlegt werden. Eine Funktion die Bilder auf den selbigen Bildbereich zuschneiden oder vergrößern zu können, ist unabdingbar.
+
+Daten mit Verzerrungen oder Rauschen müssen extra auf überwacht werden. Es ist sinnvoll eine Möglichkeit zur Verfügung zu stellen, bei der Trainingsdaten mit beschriebenen Merkmalen gekennzeichnet werden können. Eine Fourier-Transformation / Gaußsche Glättung des Signals kann das Rauschen verringern.
+
+Falls möglich, sollten die Freiheitsgrade verringert werden, um unnötige Datenmengen zu verringern. Die Verringerung der Freiheitsgrade muss auf die einzelnen Fälle abgestimmt werden, da ähnliche Elemente nicht mehr erkannt werden können sollte zu sehr generalisiert werden. Ein Beispiel einer zu hohen Verringerung wären einzelne Klassen bei der Buchstabenerkennung (bei n und h).
+
+Für einen möglichst einfachen und natürlichen Weg einen Treffer zu messen, kann die Hamming Distanz verwendet werden (\cite[][]{cv-principles-link}). Eine geringe Hamming Distanz bedeutet, dass eine hohe Übereinstimmung besteht.
+
+Desweiteren können Bilder auch in gedrehter Form gespeichert sein. Dies sorgt für keine Übereinstimmung obwohl die Bilder identisch wären. Zur Vorbeugung können Referentlinien (T beispielsweise eine horizontale und eine vertikale Linie) verwendet werden und die Bilder vorab in die richtige Position gedreht werden.
+
+Außerdem können die Bilder außerhalb des Bildzentrums liegen. Dies erhöht die Freiheitsgrade unnötig. Eine Funktion zum Zentrieren des Bildes ist wünschenswert. 
+
+Einordnen in Gruppierung als Datenpunkt.
+
+
+Kontrasterhöhung um Bildbereiche/ Elemente besser erkennen zu können.
+-> Graustufen Gewichtung:
+HDTV Formula ("0.21×Red + 0.72×Green + 0.07×Blue")
+PAL/NTSC Formula( "0.30×Red + 0.59×Green + 0.11×Blue")
+
+Link: \url{https://web.s.ebscohost.com/ehost/ebookviewer/ebook/bmxlYmtfXzEyMDQyODlfX0FO0?sid=7eaf4273-b0ca-4e23-af7e-c46da0867380@redis&vid=0&lpid=lp_iii&format=EB}
+
